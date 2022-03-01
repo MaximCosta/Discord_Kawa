@@ -4,6 +4,7 @@ const { Permissions } = require('discord.js');
 const { url } = require("inspector");
 const allIntents = new Intents(32767);
 const client = new Client({ intents: allIntents, partials: ['CHANNEL',] });
+require('dotenv').config();
 
 client.on("ready", () => {
     console.log("\x1b[33m%s\x1b[0m", "                      ╔═════════════════════╗")
@@ -452,4 +453,4 @@ client.on('guildMemberAdd', async guildMember => {
     await client.channels.cache.get(channel_welcome.id).send({ embeds: [embed_welcome] });
 });
 
-client.login("OTQyMjI1ODM0NDk0ODA4MTI1.YghaMA.dAd18TKyAMsQKsruR5Jphb_n9Fw");
+client.login(process.env.BOT_TOKEN);
