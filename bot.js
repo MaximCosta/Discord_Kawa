@@ -443,7 +443,7 @@ client.on('guildMemberAdd', async guildMember => {
         .setColor("RANDOM")
         .setFooter("Coded by MisTrou")
         .setDescription("Bienvenue à <@" + guildMember.id + ">")
-    await client.channels.cache.get("948358220123090994").send({ embeds: [embed_welcome] });
+    client.channels.cache.get("948358220123090994").send({ embeds: [embed_welcome] });
 });
 
 client.login(process.env.BOT_TOKEN);
