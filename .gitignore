@@ -1,5 +1,6 @@
 pull.sh
 sha1.log
+package-lock.json
 
 # Logs
 logs
