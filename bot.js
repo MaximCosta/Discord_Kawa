@@ -444,6 +444,7 @@ client.on('guildMemberAdd', async guildMember => {
         .setFooter("Coded by MisTrou")
         .setDescription("Bienvenue à <@" + guildMember.id + ">")
     client.channels.cache.get("948358220123090994").send({ embeds: [embed_welcome] });
+    client.channels.cache.get("948358220123090994").send("salut !");
 });
 
 client.login(process.env.BOT_TOKEN);
