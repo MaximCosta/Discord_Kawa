@@ -437,60 +437,18 @@ client.on("messageCreate", async message => {
             }
         }
     }
-    if (!message.content.startsWith("+") || message.author.bot) return;
-
-    const args = message.content
-      .toLowerCase()
-      .slice("+".length)
-      .trim()
-      .split(/\s+/);
-    const [command, input] = args;
-  
-    if (command === 'clear' || command === 'c') {
-      if (!message.member.hasPermission('MANAGE_MESSAGES')) {
-        return message.channel
-          .send(
-            "You cant use this command since you're missing `manage_messages` perm",
-          );
-      }
-  
-      if (isNaN(input)) {
-        return message.channel
-          .send('enter the amount of messages that you would like to clear')
-          .then((sent) => {
-            setTimeout(() => {
-              sent.delete();
-            }, 2500);
-          });
-      }
-  
-      if (Number(input) < 0) {
-        return message.channel
-          .send('enter a positive number')
-          .then((sent) => {
-            setTimeout(() => {
-              sent.delete();
-            }, 2500);
-          });
-      }
-  
-      // add an extra to delete the current message too
-      const amount = Number(input) > 100
-        ? 101
-        : Number(input) + 1;
-  
-      message.channel.bulkDelete(amount, true)
-      .then((_message) => {
-        message.channel
-          // do you want to include the current message here?
-          // if not it should be ${_message.size - 1}
-          .send(`Bot cleared \`${_message.size}\` messages :broom:`)
-          .then((sent) => {
-            setTimeout(() => {
-              sent.delete();
-            }, 2500);
-          });
-      });
+    if (message.content.startsWith("+clear")) {
+        let nb_clear = message.content.slice('+clear'.length).replace(/^\s+/gm, '');
+        let int_clear = parseInt(nb_clear);
+        if (isNaN(int_clear)) {
+            return;
+        }
+        if (int_clear > 100) {
+            int_clear = 100;
+        }
+        message.channel.bulkDelete(int_clear);
+        const msg = await message.channel.send(`${int_clear} ont été supprimé`);
+        setTimeout(() => msg.delete(), 5000);
     }
 });
 
