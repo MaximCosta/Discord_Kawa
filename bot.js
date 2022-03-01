@@ -438,13 +438,13 @@ client.on("messageCreate", async message => {
     }
 });
 
-client.on('guildMemberAdd', async guildMember => {
+client.on('guildMemberAdd', guildMember => {
     const embed_welcome = new MessageEmbed()
         .setColor("RANDOM")
         .setFooter("Coded by MisTrou")
         .setDescription("Bienvenue à <@" + guildMember.id + ">")
+        .setThumbnail("https://cdn.discordapp.com/attachments/947974277691473920/948245206866735124/logo_kawa.png");
     client.channels.cache.get("948358220123090994").send({ embeds: [embed_welcome] });
-    console.log("une personne est arrivé");
 });
 
 client.login(process.env.BOT_TOKEN);
