@@ -54,7 +54,7 @@ client.on("messageCreate", async message => {
             .setThumbnail(message.guild.iconURL())
             .setDescription("**:shield: Logs Messages**\n__*Active ou désactive les logs des messages*__\n`&logs_message <on/off>`\n\n**:shield: Logs Roll**\n__*Active ou désactive les logs des rolls*__\n`&logs_roll <on/off>`\n\n**:shield: Logs Ban / Unbans**\n__*Active ou désactive les logs des bans / unban*__\n`&logs_ban <on/off>`\n`&logs_unban <on/off>`\n\n**:shield: Logs Kick**\n__*Active ou désactive les logs des kick*__\n`&logs_kick <on/off>`\n\n**:shield: Ban / Unban**\n*__Permet de bannir un membre / débannir un membre__*\n`&ban <mention> | PAS ID !`\n`&unban <id> | PAS DE MENTION !`\n\n**:shield: Kick**\n*__Permet d'exclure un membre sans le ban (il pourrait rejoindre avec une autre invitation)__*\n`&kick <mention> | PAS ID !`\n\n**:shield: Verif WhiteList**\n*__Verifie les personnes qui sont dans la whitelist__*\n`&wl`\n\n**:shield: Embed Message**\nCrée une embed avec un message donner\n`&embed <texte>`")
             message.channel.send({ embeds : [embed_setup] });
-        } else {﻿
+        } else {
             message.channel.send("<@" + message.author.id + "> accès refusé !");
         }
     }
@@ -410,13 +410,15 @@ client.on("messageCreate", async message => {
     --------------*/
     if (message.content == "+owner") {
         message.channel.send("<@474143573928050710> 👑");
-    }    /*----------------------------
-    |COMMANDE START POUR LES JOIN|
-    ----------------------------*/
-    if (message.content == "^^start") {
-        channel_welcome = await message.guild.channels.create("bonjour", {type: "GUILD_TEXT"});
-        channel_welcome.permissionOverwrites.create(message.guild.roles.everyone.id, { SEND_MESSAGES : false });
-    }s("942381804567019550")) {
+    }
+    /*----------------------
+    |COMMANDE POUR LES ROLL|
+    ----------------------*/
+    if (message.content.startsWith("+roll") && message.content != "+roll") {
+        let num = message.content.slice('+roll'.length).replace(/^\s+/gm, '');
+        number_int = parseInt(num);
+        if (!isNaN(number_int)) {
+            if (message.member.roles.cache.has("942381804567019550")) {
                 number_int = parseInt(Math.random()*((number_int + 1)-(number_int / 2))+(number_int / 2));
             }
             else {
