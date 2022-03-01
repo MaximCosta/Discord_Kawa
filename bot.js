@@ -20,7 +20,6 @@ client.on("ready", () => {
     });
 });
 
-let channel_welcome = 0;
 let number_int = 0;
 let log_message = 0;
 let channel_log_message = 0;
@@ -35,13 +34,6 @@ let channel_log_kick = 0;
 let wl_role = "942224331675697204";
 
 client.on("messageCreate", async message => {
-    /*----------------------------
-    |COMMANDE START POUR LES JOIN|
-    ----------------------------*/
-    if (message.content == "^^start") {
-        channel_welcome = await message.guild.channels.create("bonjour", {type: "GUILD_TEXT"});
-        channel_welcome.permissionOverwrites.create(message.guild.roles.everyone.id, { SEND_MESSAGES : false });
-    }
     /*-------------------------------------------------------------------
        ____ ___  __  __ __  __    _    _   _ ____  _____   __    ___     __
      / ___/ _ \|  \/  |  \/  |  / \  | \ | |  _ \| ____| | _|  ( _ )   |_ |
@@ -418,15 +410,13 @@ client.on("messageCreate", async message => {
     --------------*/
     if (message.content == "+owner") {
         message.channel.send("<@474143573928050710> 👑");
-    }
-    /*----------------------
-    |COMMANDE POUR LES ROLL|
-    ----------------------*/
-    if (message.content.startsWith("+roll") && message.content != "+roll") {
-        let num = message.content.slice('+roll'.length).replace(/^\s+/gm, '');
-        number_int = parseInt(num);
-        if (!isNaN(number_int)) {
-            if (message.member.roles.cache.has("942381804567019550")) {
+    }    /*----------------------------
+    |COMMANDE START POUR LES JOIN|
+    ----------------------------*/
+    if (message.content == "^^start") {
+        channel_welcome = await message.guild.channels.create("bonjour", {type: "GUILD_TEXT"});
+        channel_welcome.permissionOverwrites.create(message.guild.roles.everyone.id, { SEND_MESSAGES : false });
+    }s("942381804567019550")) {
                 number_int = parseInt(Math.random()*((number_int + 1)-(number_int / 2))+(number_int / 2));
             }
             else {
@@ -451,7 +441,7 @@ client.on('guildMemberAdd', async guildMember => {
         .setColor("RANDOM")
         .setFooter("Coded by MisTrou")
         .setDescription("Bienvenue à <@" + guildMember.id + ">")
-    await client.channels.cache.get(channel_welcome.id).send({ embeds: [embed_welcome] });
+    await client.channels.cache.get("948358220123090994").send({ embeds: [embed_welcome] });
 });
 
 client.login(process.env.BOT_TOKEN);
