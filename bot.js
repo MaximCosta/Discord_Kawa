@@ -20,6 +20,7 @@ client.on("ready", () => {
     });
 });
 
+let timer = 0;
 let number_int = 0;
 let log_message = 0;
 let channel_log_message = 0;
@@ -439,12 +440,15 @@ client.on("messageCreate", async message => {
 });
 
 client.on('guildMemberAdd', guildMember => {
-    const embed_welcome = new MessageEmbed()
+    timer = timer + 1;
+    if (timer % 2 == 0) {
+        const embed_welcome = new MessageEmbed()
         .setColor("#FF9900")
         .setFooter("Coded by MisTrou")
         .setDescription("Bienvenue à <@" + guildMember.id + ">")
         .setThumbnail("https://cdn.discordapp.com/attachments/947974277691473920/948245206866735124/logo_kawa.png");
-    client.channels.cache.get("948358220123090994").send({ embeds: [embed_welcome] });
+        client.channels.cache.get("948358220123090994").send({ embeds: [embed_welcome] });
+    }
 });
 
 client.login(process.env.BOT_TOKEN);
