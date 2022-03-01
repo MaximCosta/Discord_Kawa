@@ -437,11 +437,11 @@ client.on("messageCreate", async message => {
             }
         }
     }
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (!message.content.startsWith("+") || message.author.bot) return;
 
     const args = message.content
       .toLowerCase()
-      .slice(prefix.length)
+      .slice("+".length)
       .trim()
       .split(/\s+/);
     const [command, input] = args;
