@@ -20,6 +20,8 @@ client.on("ready", () => {
     });
 });
 
+let PREFIX_NORMAL="+"
+let PREFIX_WHITELIST="&"
 let timer = 0;
 let number_int = 0;
 let log_message = 0;
@@ -46,7 +48,7 @@ client.on("messageCreate", async message => {
     /*-----------------------------
     |COMMANDE HELP DE LA WHITELIST|
     -----------------------------*/
-    if (message.content == `${process.env.PREFIX_WHITELIST}help`) {
+    if (message.content == `${PREFIX_WHITELIST}help`) {
         if (message.member.roles.cache.has(wl_role)) {
             const embed_setup = new MessageEmbed()
             .setColor("DARK_RED")
