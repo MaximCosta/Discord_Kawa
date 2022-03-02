@@ -46,17 +46,18 @@ client.on("messageCreate", async message => {
     /*-----------------------------
     |COMMANDE HELP DE LA WHITELIST|
     -----------------------------*/
-    if (message.content == "&help") {
+    if (message.content == process.env.PREFIX_NORMAL + "help") {
         if (message.member.roles.cache.has(wl_role)) {
             const embed_setup = new MessageEmbed()
             .setColor("DARK_RED")
             .setFooter("Coded by MisTrou")
             .setTitle("[&] " +message.guild.name + " PROTECT COMMANDES")
             .setThumbnail(message.guild.iconURL())
-            .setDescription("**:shield: Logs Messages**\n__*Active ou désactive les logs des messages*__\n`&logs_message <on/off>`\n\n**:shield: Logs Roll**\n__*Active ou désactive les logs des rolls*__\n`&logs_roll <on/off>`\n\n**:shield: Logs Ban / Unbans**\n__*Active ou désactive les logs des bans / unban*__\n`&logs_ban <on/off>`\n`&logs_unban <on/off>`\n\n**:shield: Logs Kick**\n__*Active ou désactive les logs des kick*__\n`&logs_kick <on/off>`\n\n**:shield: Ban / Unban**\n*__Permet de bannir un membre / débannir un membre__*\n`&ban <mention> | PAS ID !`\n`&unban <id> | PAS DE MENTION !`\n\n**:shield: Kick**\n*__Permet d'exclure un membre sans le ban (il pourrait rejoindre avec une autre invitation)__*\n`&kick <mention> | PAS ID !`\n\n**:shield: Verif WhiteList**\n*__Verifie les personnes qui sont dans la whitelist__*\n`&wl`\n\n**:shield: Embed Message**\nCrée une embed avec un message donner\n`&embed <texte>`")
+            .setDescription("**:shield: Logs Messages**\n__*Active ou désactive les logs des messages*__\n`&logs_message <on/off>`\n\n**:shield: Logs Roll**\n__*Active ou désactive les logs des rolls*__\n`&logs_roll <on/off>`\n\n**:shield: Logs Ban / Unbans**\n__*Active ou désactive les logs des bans / unban*__\n`&logs_ban <on/off>`\n`&logs_unban <on/off>`\n\n**:shield: Logs Kick**\n__*Active ou désactive les logs des kick*__\n`&logs_kick <on/off>`\n\n**:shield: Ban / Unban**\n*__Permet de bannir un membre / débannir un membre__*\n`&ban <mention> | PAS ID !`\n`&unban <id> | PAS DE MENTION !`\n\n**:shield: Kick**\n*__Permet d'exclure un membre sans le ban (il pourrait rejoindre avec une autre invitation)__*\n`&kick <mention> | PAS ID !`\n\n**:shield: Verif WhiteList**\n*__Verifie les personnes qui sont dans la whitelist__*\n`&wl`\n\n**:shield: Embed Message**\nCrée une embed avec un message donner\n`&embed <texte>`\n\n**:shield: Clear**\nSupprime des messages\n`&clear <nombre>`")
             message.channel.send({ embeds : [embed_setup] });
         } else {
             message.channel.send("<@" + message.author.id + "> accès refusé !");
+            setTimeout(() => msg.delete(), 5000);
         }
     }
     if (message.content.startsWith("&clear") && message.member.roles.cache.has(wl_role)) {
@@ -69,7 +70,7 @@ client.on("messageCreate", async message => {
             int_clear = 100;
         }
         message.channel.bulkDelete(int_clear);
-        const msg = await message.channel.send(`**${int_clear}** ont été supprimé`);
+        const msg = await message.channel.send(`**${int_clear}** messages ont été supprimé`);
         setTimeout(() => msg.delete(), 5000);
     }
     /*------------------------------------
