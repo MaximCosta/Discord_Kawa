@@ -4,7 +4,9 @@ const { Permissions } = require('discord.js');
 const { url } = require("inspector");
 const allIntents = new Intents(32767);
 const client = new Client({ intents: allIntents, partials: ['CHANNEL',] });
-require('dotenv').config();
+const path = require("path");
+require('dotenv').config({ path : path.join(__dirname, '.env')});
+console.log(process.env.BOT_TOKEN);
 
 client.on("ready", () => {
     console.log("\x1b[33m%s\x1b[0m", "                      ╔═════════════════════╗")
@@ -78,7 +80,7 @@ client.on("messageCreate", async message => {
     /*------------------------------------
     |COMMANDE LOGS KICK AVEC LA WHITELISTE|
     -------------------------------------*/
-    if (message.content.startsWith("&embed") && message.member.roles.cache.has(wl_role)) {
+    if (message.content.startsWith(`${PREFIX_WHITELIST}embed`) && message.member.roles.cache.has(wl_role)) {
         let message_to_embed = message.content.slice('&embed'.length).replace(/^\s+/gm, '');
         const embed_messages = new MessageEmbed()
             .setColor("RANDOM")
