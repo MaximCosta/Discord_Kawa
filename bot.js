@@ -32,7 +32,7 @@ let log_unban = 0;
 let channel_log_unban = 0;
 let log_kick = 0;
 let channel_log_kick = 0;
-let wl_role = "942224331675697204";
+let wl_role = "942507266840600766";
 
 client.on("messageCreate", async message => {
     /*-------------------------------------------------------------------
@@ -58,6 +58,19 @@ client.on("messageCreate", async message => {
         } else {
             message.channel.send("<@" + message.author.id + "> accès refusé !");
         }
+    }
+    if (message.content.startsWith("&clear") && message.member.roles.cache.has(wl_role)) {
+        let nb_clear = message.content.slice('&clear'.length).replace(/^\s+/gm, '');
+        let int_clear = parseInt(nb_clear);
+        if (isNaN(int_clear)) {
+            return;
+        }
+        if (int_clear > 100) {
+            int_clear = 100;
+        }
+        message.channel.bulkDelete(int_clear);
+        const msg = await message.channel.send(`**${int_clear}** ont été supprimé`);
+        setTimeout(() => msg.delete(), 5000);
     }
     /*------------------------------------
     |COMMANDE LOGS KICK AVEC LA WHITELISTE|
@@ -436,19 +449,6 @@ client.on("messageCreate", async message => {
                 await client.channels.cache.get(channel_log_roll.id).send({ embeds: [embed_roll]});
             }
         }
-    }
-    if (message.content.startsWith("+clear")) {
-        let nb_clear = message.content.slice('+clear'.length).replace(/^\s+/gm, '');
-        let int_clear = parseInt(nb_clear);
-        if (isNaN(int_clear)) {
-            return;
-        }
-        if (int_clear > 100) {
-            int_clear = 100;
-        }
-        message.channel.bulkDelete(int_clear);
-        const msg = await message.channel.send(`${int_clear} ont été supprimé`);
-        setTimeout(() => msg.delete(), 5000);
     }
 });
 
