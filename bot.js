@@ -5,8 +5,7 @@ const { url } = require("inspector");
 const allIntents = new Intents(32767);
 const client = new Client({ intents: allIntents, partials: ['CHANNEL',] });
 const path = require("path");
-require('dotenv').config({ path : path.join(__dirname, '.env')});
-console.log(process.env.BOT_TOKEN);
+require('dotenv').config();
 
 client.on("ready", () => {
     console.log("\x1b[33m%s\x1b[0m", "                      ╔═════════════════════╗")
