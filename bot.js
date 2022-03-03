@@ -74,7 +74,7 @@ client.on("messageCreate", async message => {
         }
         message.channel.bulkDelete(int_clear);
         const msg = await message.channel.send(`**${int_clear}** messages ont été supprimé`);
-        setTimeout(() => msg.delete(), 5000);
+        setTimeout(() => msg.delete(), 1000);
     }
     /*------------------------------------
     |COMMANDE LOGS KICK AVEC LA WHITELISTE|
