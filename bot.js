@@ -69,10 +69,10 @@ client.on("messageCreate", async message => {
         if (isNaN(int_clear)) {
             return;
         }
-        if (int_clear > 100) {
+        if (int_clear > 100 + 1) {
             int_clear = 100;
         }
-        message.channel.bulkDelete(int_clear);
+        message.channel.bulkDelete(int_clear + 1);
         const msg = await message.channel.send(`**${int_clear}** messages ont été supprimé`);
         setTimeout(() => msg.delete(), 1000);
     }
