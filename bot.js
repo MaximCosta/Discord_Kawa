@@ -37,6 +37,8 @@ let log_kick = 0;
 let channel_log_kick = 0;
 let wl_role = "942507266840600766";
 
+
+
 client.on("messageCreate", async message => {
     /*-------------------------------------------------------------------
        ____ ___  __  __ __  __    _    _   _ ____  _____   __    ___     __
