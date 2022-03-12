@@ -408,7 +408,7 @@ client.on("messageCreate", async message => {
             .setTitle("[+] " + message.guild.name)
             .setFooter("Coded by MisTrou")
             .setThumbnail(message.guild.iconURL())
-            .setDescription("https://discord.com/api/oauth2/authorize?client_id=942225834494808125&permissions=8&scope=bot")
+            .setDescription("https://discord.com/api/oauth2/authorize?client_id=" + client.user.id + "&permissions=8&scope=bot")
         message.channel.send({ embeds: [embed] });
     }
     /*-------------
