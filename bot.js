@@ -465,6 +465,7 @@ client.on('guildMemberAdd', guildMember => {
         .setDescription("Bienvenue à <@" + guildMember.id + ">")
         .setThumbnail("https://cdn.discordapp.com/attachments/947974277691473920/948245206866735124/logo_kawa.png");
 	guildMember?.guild?.channels?.cache?.get("948358220123090994")?.send({ embeds: [embed_welcome] });
+    guildMember.roles.add("921164707455434754");
 });
 
 client.login(process.env.BOT_TOKEN);
